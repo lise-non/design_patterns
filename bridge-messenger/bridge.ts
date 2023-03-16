@@ -22,17 +22,15 @@ class Facebook implements Carrier {
 
 class Message {
     protected sender: Carrier;
-    protected message: string;
 
-    constructor(sender: Carrier, message: string) {
+    constructor(sender: Carrier) {
         this.sender = sender;
-        this.message = message;
     }
 
-    public send() {
-        this.sender.send(this.message);
+    public send(message: string) {
+        this.sender.send(message);
     }
 }
 
-const message = new Message(new Twitter(), "Salut !");
-message.send();
+const message = new Message(new Twitter());
+message.send("Salut !");
