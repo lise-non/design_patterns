@@ -1,37 +1,38 @@
 interface Carrier {
-    send(): void;
+    send(message: string): void;
 }
 
 class Mail implements Carrier {
-    public send() {
-        console.log("Envoi par mail");
+    public send(message: string) {
+        console.log("Envoi par mail", message);
     }
 }
 
 class Twitter implements Carrier {
-    public send() {
-        console.log("Envoi par Twitter");
+    public send(message: string) {
+        console.log("Envoi par Twitter", message);
     }
 }
 
 class Facebook implements Carrier {
-    public send() {
-        console.log("Envoi par Facebook");
+    public send(message: string) {
+        console.log("Envoi par Facebook", message);
     }
 }
 
 class Message {
-    // protected message: string;
     protected sender: Carrier;
+    protected message: string;
 
-    constructor(sender: Carrier) {
+    constructor(sender: Carrier, message: string) {
         this.sender = sender;
+        this.message = message;
     }
 
     public send() {
-        this.sender.send();
+        this.sender.send(this.message);
     }
 }
 
-const message = new Message(new Twitter());
+const message = new Message(new Twitter(), "Salut !");
 message.send();
